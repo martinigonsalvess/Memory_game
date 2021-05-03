@@ -85,6 +85,7 @@ function checkForMatch() {
   if (cardChosenIds[0] == cardChosenIds[1]) {
     alert("You have clicked the same image");
     cards[cardChosenIds[0]].setAttribute("src", "src/images/blank.png");
+    cards[cardChosenIds[1]].setAttribute("src", "src/images/blank.png");
   }
 }
 
