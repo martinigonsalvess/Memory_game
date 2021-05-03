@@ -3,51 +3,51 @@
 const cards = [
   {
     name: "one",
-    img: "scr/images/one.png",
+    img: "src/images/one.png",
   },
   {
     name: "two",
-    img: "scr/images/two.png",
+    img: "src/images/two.png",
   },
   {
     name: "three",
-    img: "scr/images/three.png",
+    img: "src/images/three.png",
   },
   {
     name: "four",
-    img: "scr/images/four.png",
+    img: "src/images/four.png",
   },
   {
     name: "five",
-    img: "scr/images/five.png",
+    img: "src/images/five.png",
   },
   {
     name: "six",
-    img: "scr/images/six.png",
+    img: "src/images/six.png",
   },
   {
     name: "one",
-    img: "scr/images/one.png",
+    img: "src/images/one.png",
   },
   {
     name: "two",
-    img: "scr/images/two.png",
+    img: "src/images/two.png",
   },
   {
     name: "three",
-    img: "scr/images/three.png",
+    img: "src/images/three.png",
   },
   {
     name: "four",
-    img: "scr/images/four.png",
+    img: "src/images/four.png",
   },
   {
     name: "five",
-    img: "scr/images/five.png",
+    img: "src/images/five.png",
   },
   {
     name: "six",
-    img: "scr/images/six.png",
+    img: "src/images/six.png",
   },
 ];
 cards.sort(() => 0.5 - Math.random());
@@ -56,6 +56,7 @@ console.log(cards);
 
 const grid = document.querySelector(".grid");
 let cardChosen = [];
+let cardChosenIds = [];
 
 function createBoard() {
   for (let i = 0; i < cards.length; i++) {
@@ -67,9 +68,16 @@ function createBoard() {
     //creating: img src='src/images/blank.png' data-id='0'...etc
   }
 }
-createBoard();
 
 function flipCard() {
   let cardId = this.getAttribute("data-id");
-  cardChosen.push(cards[cardId]);
+  //   console.log(cards[cardId]); // click on it see the random images
+  cardChosen.push(cards[cardId].name);
+  cardChosenIds.push(cardId);
+
+  this.setAttribute("src", cards[cardId].img);
+  if (cardChosen.length === 2) {
+    setTimeout(checkForMatch, 500);
+  }
 }
+createBoard();
