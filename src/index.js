@@ -1,6 +1,6 @@
 //card options
 
-const cards = [
+const cardArray = [
   {
     name: "one",
     img: "src/images/one.png",
@@ -50,8 +50,8 @@ const cards = [
     img: "src/images/six.png",
   },
 ];
-cards.sort(() => 0.5 - Math.random());
-console.log(cards);
+cardArray.sort(() => 0.5 - Math.random());
+console.log(cardArray);
 //put random card in grid
 
 const grid = document.querySelector(".grid");
@@ -59,7 +59,7 @@ let cardChosen = [];
 let cardChosenIds = [];
 
 function createBoard() {
-  for (let i = 0; i < cards.length; i++) {
+  for (let i = 0; i < cardArray.length; i++) {
     const card = document.createElement("img");
     card.setAttribute("src", "src/images/blank.png");
     card.setAttribute("data-id", i);
@@ -71,13 +71,21 @@ function createBoard() {
 
 function flipCard() {
   let cardId = this.getAttribute("data-id");
-  //   console.log(cards[cardId]); // click on it see the random images
-  cardChosen.push(cards[cardId].name);
+  //   console.log(cardArray[cardId]); // click on it see the random images
+  cardChosen.push(cardArray[cardId].name);
   cardChosenIds.push(cardId);
 
-  this.setAttribute("src", cards[cardId].img);
+  this.setAttribute("src", cardArray[cardId].img);
   if (cardChosen.length === 2) {
     setTimeout(checkForMatch, 500);
   }
 }
+function checkForMatch() {
+  const cards = document.querySelectorAll("img");
+  if (cardChosenIds[0] == cardChosenIds[1]) {
+    alert("You have clicked the same image");
+    cards[cardChosenIds[0]].setAttribute("src", "src/images/blank.png");
+  }
+}
+
 createBoard();
